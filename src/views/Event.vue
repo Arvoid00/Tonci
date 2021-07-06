@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <Shift shift="Demo Shift" />
+    <Shift shiftname="Demo Shift" v-bind:days="days" />
   </div>
 </template>
 
@@ -11,11 +11,59 @@
 import Navbar from "@/components/Navbar.vue";
 import Shift from "@/components/Shift.vue";
 
+var days = [
+  {
+    date: "6 juli 2021",
+    registrationDeadline: "6 juli 2021 om 17:00",
+    shifts: [
+      {
+        name: "Eetlijst",
+        start: "20:00",
+        end: "21:00",
+        subscribed: 55,
+      },
+      {
+        name: "Tweede Rondeee",
+        start: "21:00",
+        end: "22:00",
+        subscribed: 10,
+      },
+    ],
+  },
+  {
+    date: "13 juli 2021",
+    registrationDeadline: "13 juli 2021 om 17:00",
+    shifts: [
+      {
+        name: "Eetlijst",
+        start: "20:00",
+        end: "21:00",
+        subscribed: 24,
+      },
+    ],
+  },
+  {
+    date: "20 juli 2021",
+    registrationDeadline: "20 juli 2021 om 17:00",
+    shifts: [
+      {
+        name: "Eetlijst",
+        start: "20:00",
+        end: "21:00",
+        subscribed: 10,
+      },
+    ],
+  },
+];
+
 export default {
   name: "Home",
   components: {
     Navbar,
     Shift,
+  },
+  data() {
+    return { days: days };
   },
 };
 </script>

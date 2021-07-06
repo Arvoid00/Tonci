@@ -2,86 +2,38 @@
   <div>
     <MDBContainer class="mt-4"
       ><h2>Hallo {{ username }}</h2>
+      <MDBBtn
+        color="primary"
+        href="#"
+        style="float: right"
+        class="refresh-btn"
+        @click="alertNow()"
+      >
+        <MDBIcon icon="user" iconStyle="fas" class="me-2"></MDBIcon>Click
+      </MDBBtn>
     </MDBContainer>
     <MDBContainer id="Available" class="group">
       <MDBBtn color="primary" href="#" style="float: right" class="refresh-btn">
         <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon>Verversen
       </MDBBtn>
       <h2>Beschikbare Events</h2>
-
       <MDBRow :cols="['1', 'md-3']" class="g-4">
-        <MDBCol>
-          <MDBCard class="h-100">
+        <MDBCol v-for="(event, index) in events" v-bind:key="index">
+          <MDBCard class="h-100" @click="goToEvent()">
             <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-          top
-          alt="..."
-        /> -->
+              src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+              top
+              alt="..."
+            /> -->
             <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </MDBCardText>
+              <MDBCardTitle>{{ event.name }}</MDBCardTitle>
+              <MDBCardText>{{ event.desc }} </MDBCardText>
+              <router-link to="/foo" tag="button"> Inschrijven </router-link>
             </MDBCardBody>
             <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/042.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>This is a short card.</MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.
-              </MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
+              <small class="text-muted"
+                >Zichtbaar tot: {{ event.viewUntil }}</small
+              >
             </MDBCardFooter>
           </MDBCard>
         </MDBCol>
@@ -90,78 +42,21 @@
     <MDBContainer id="Expired" class="group">
       <h2>Verlopen Events</h2>
       <MDBRow :cols="['1', 'md-3']" class="g-4">
-        <MDBCol>
+        <MDBCol v-for="(event, index) in expiredEvents" v-bind:key="index">
           <MDBCard class="h-100">
             <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-          top
-          alt="..."
-        /> -->
+              src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+              top
+              alt="..."
+            /> -->
             <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </MDBCardText>
+              <MDBCardTitle>{{ event.name }}</MDBCardTitle>
+              <MDBCardText>{{ event.desc }} </MDBCardText>
             </MDBCardBody>
             <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/042.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>This is a short card.</MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.
-              </MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
-            </MDBCardFooter>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard class="h-100">
-            <!-- <MDBCardImg
-          src="https://mdbootstrap.com/img/new/standard/city/044.jpg"
-          top
-          alt="..."
-        /> -->
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </MDBCardText>
-            </MDBCardBody>
-            <MDBCardFooter>
-              <small class="text-muted">Zichtbaar tot: Datum</small>
+              <small class="text-muted"
+                >Zichtbaar tot: {{ event.viewUntil }}</small
+              >
             </MDBCardFooter>
           </MDBCard>
         </MDBCol>
@@ -178,12 +73,13 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardFooter,
-  MDBCardText /*MDBCardImg*/,
+  MDBCardText,
+  MDBCardTitle,
   MDBIcon,
   MDBBtn,
 } from "mdb-vue-ui-kit";
 
-fetch("https://skoll.nl/wp-json/myskoll/tonci").then((res) => console.log(res));
+// fetch("https://skoll.nl/wp-json/myskoll/tonci").then((res) => console.log(res));
 
 export default {
   name: "AvailableShifts",
@@ -194,12 +90,23 @@ export default {
     MDBCard,
     MDBCardBody,
     MDBCardFooter,
-    MDBCardText /* MDBCardImg */,
+    MDBCardText,
+    MDBCardTitle,
     MDBIcon,
     MDBBtn,
   },
   props: {
     username: String,
+    events: Array,
+    expiredEvents: Array,
+  },
+  methods: {
+    goToEvent() {
+      this.router.push({ path: "/event" });
+    },
+    alertNow() {
+      alert("Hi");
+    },
   },
 };
 </script>
