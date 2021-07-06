@@ -22,10 +22,23 @@
       </p>
     </MDBContainer>
     <MDBContainer id="Shift" class="group">
-      <MDBBtn color="primary" href="#" style="float: right" class="refresh-btn">
-        <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon>Verversen
-      </MDBBtn>
-      <h2>Aankomende Shifts</h2>
+      <MDBRow>
+        <MDBCol md="8" sm="12">
+          <h2>Aankomende Shifts</h2>
+        </MDBCol>
+        <MDBCol md="4" sm="12">
+          <MDBBtn
+            color="primary"
+            href="#"
+            style="float: right"
+            class="refresh-btn"
+          >
+            <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon
+            >Verversen
+          </MDBBtn></MDBCol
+        >
+      </MDBRow>
+
       <MDBRow
         :cols="['1', 'md-12']"
         class="g-4"
@@ -35,11 +48,10 @@
         <MDBCol>
           <h5 class="ShiftDate">
             {{ day.date }} | Zichtbaar tot {{ day.registrationDeadline }}
-          </h5>
-        </MDBCol>
+          </h5></MDBCol
+        >
 
-        <MDBRow>
-          <!-- {{ days[index].shifts }} -->
+        <MDBRow :cols="['1', 'md-4']" class="g-3">
           <MDBCol v-for="(shift, idx) in days[index].shifts" v-bind:key="idx">
             <MDBCard class="h-100" @click="goToEvent()">
               <!-- <MDBCardImg
@@ -52,9 +64,16 @@
                 <MDBCardText
                   ><p>Start: {{ shift.start }}</p>
                   <p>Einde: {{ shift.end }}</p>
-                  <p>Aangemeld: {{ shift.subscribed }}</p>
+                  <p>
+                    Aangemeld: {{ shift.subscribed }} /
+                    {{ shift.maxSubscribed }}
+                  </p>
                 </MDBCardText>
-                <router-link to="/foo" tag="button"> Inschrijven </router-link>
+                <!-- <router-link to="/foo" tag="button"> Inschrijven </router-link> -->
+                <MDBBtn color="primary" href="#" class="refresh-btn">
+                  <MDBIcon icon="pen" iconStyle="fas" class="me-2"></MDBIcon
+                  >Inschrijven
+                </MDBBtn>
               </MDBCardBody>
             </MDBCard>
           </MDBCol>
@@ -114,12 +133,6 @@ export default {
 }
 
 .ShiftDate {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  font-weight: bold;
-}
-
-h2 {
-  margin-bottom: 25px;
+  margin-top: 56px;
 }
 </style>
