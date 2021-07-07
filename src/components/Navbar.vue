@@ -1,15 +1,17 @@
 <template>
   <MDBNavbar expand="lg" light bg="light" container>
     <img href="#" src="../assets/Skoll1.png" width="100" />
-    <MDBNavbarBrand href="#">Skøll</MDBNavbarBrand>
+    <MDBNavbarBrand href="/">Skøll</MDBNavbarBrand>
     <MDBNavbarToggler
       @click="collapse1 = !collapse1"
       target="#navbarSupportedContent"
     ></MDBNavbarToggler>
     <MDBCollapse v-model="collapse1" id="navbarSupportedContent">
       <MDBNavbarNav class="mb-2 mb-lg-0">
-        <MDBNavbarItem to="#" active> Home </MDBNavbarItem>
-        <MDBNavbarItem href="#" style="display: none"> Admin </MDBNavbarItem>
+        <MDBNavbarItem to="/" active> Home </MDBNavbarItem>
+        <MDBNavbarItem href="/admin" style="display: none">
+          Admin
+        </MDBNavbarItem>
       </MDBNavbarNav>
       <!-- Search form -->
       <form class="d-flex input-group w-auto">
@@ -37,7 +39,7 @@ import {
 } from "mdb-vue-ui-kit";
 
 export default {
-  name: "HelloWorld",
+  name: "Navbar",
   components: {
     MDBNavbar,
     MDBNavbarNav,

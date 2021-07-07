@@ -1,25 +1,30 @@
 <template>
   <div>
-    <MDBContainer class="mt-4"
+    <MDBContainer
       ><h2>Hallo {{ username }}</h2>
-      <MDBBtn
-        color="primary"
-        href="#"
-        style="float: right"
-        class="refresh-btn"
-        @click="alertNow()"
-      >
-        <MDBIcon icon="user" iconStyle="fas" class="me-2"></MDBIcon>Click
-      </MDBBtn>
     </MDBContainer>
     <MDBContainer id="Available" class="group">
-      <MDBBtn color="primary" href="#" style="float: right" class="refresh-btn">
-        <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon>Verversen
-      </MDBBtn>
-      <h2>Beschikbare Events</h2>
+      <MDBRow>
+        <MDBCol sm="12" md="8">
+          <h2 class="">Beschikbare Events</h2>
+        </MDBCol>
+        <MDBCol sm="12" md="4">
+          <MDBBtn
+            color="primary"
+            href="#"
+            style="float: right"
+            class="refresh-btn btn-wide"
+            @click="refreshEvents()"
+          >
+            <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon
+            >Verversen
+          </MDBBtn>
+        </MDBCol>
+      </MDBRow>
+
       <MDBRow :cols="['1', 'md-3']" class="g-4">
         <MDBCol v-for="(event, index) in events" v-bind:key="index">
-          <MDBCard class="h-100" @click="goToEvent()">
+          <MDBCard class="h-100 hover-shadow card" @click="goToEvent()">
             <!-- <MDBCardImg
               src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
               top
@@ -28,7 +33,11 @@
             <MDBCardBody>
               <MDBCardTitle>{{ event.name }}</MDBCardTitle>
               <MDBCardText>{{ event.desc }} </MDBCardText>
-              <router-link to="/foo" tag="button"> Inschrijven </router-link>
+              <!-- <MDBBtn color="primary" href="#" class="refresh-btn">
+                <MDBIcon icon="pen" iconStyle="fas" class="me-2"></MDBIcon
+                >Inschrijven
+              </MDBBtn> -->
+              <p class="cta">INSCHRIJVEN</p>
             </MDBCardBody>
             <MDBCardFooter>
               <small class="text-muted"
@@ -43,7 +52,7 @@
       <h2>Verlopen Events</h2>
       <MDBRow :cols="['1', 'md-3']" class="g-4">
         <MDBCol v-for="(event, index) in expiredEvents" v-bind:key="index">
-          <MDBCard class="h-100">
+          <MDBCard class="h-100 hover-shadow card" @click="goToEvent()">
             <!-- <MDBCardImg
               src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
               top
@@ -52,6 +61,14 @@
             <MDBCardBody>
               <MDBCardTitle>{{ event.name }}</MDBCardTitle>
               <MDBCardText>{{ event.desc }} </MDBCardText>
+              <!-- <router-link
+                to="/foo"
+                tag="button"
+                style="text-transform: uppercase"
+              >
+                Meer lezen
+              </router-link> -->
+              <p class="cta">MEER LEZEN</p>
             </MDBCardBody>
             <MDBCardFooter>
               <small class="text-muted"
@@ -102,10 +119,10 @@ export default {
   },
   methods: {
     goToEvent() {
-      this.router.push({ path: "/event" });
+      alert("This redirect does not work yet");
     },
-    alertNow() {
-      alert("Hi");
+    refreshEvents() {
+      alert("This will refresh the events data");
     },
   },
 };
@@ -113,14 +130,31 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 .group {
   background-color: #f5f5f5;
   padding: 25px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  /* margin-top: 25px;
+  margin-bottom: 25px; */
+}
+.card:hover {
+  cursor: pointer;
+}
+
+.cta {
+  color: #1266f1;
 }
 
 h2 {
   margin-bottom: 25px;
+}
+
+@media screen and (max-width: 540px) {
+  .btn-wide {
+    width: 100%;
+  }
 }
 </style>

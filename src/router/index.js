@@ -1,18 +1,24 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-// import Home from "../views/Home.vue";
-import Event from "../views/Event.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import Home from "../views/Home.vue";
+import Shifts from "../views/Shifts.vue";
+import PageNotFound from "../views/PageNotFound.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Event,
+    component: Home,
   },
-  { path: "/event", name: "Event", component: Event },
+  {
+    path: "/:catchAll(.*)*",
+    name: "PageNotFound",
+    component: PageNotFound,
+  },
+  { path: "/shifts", name: "Shifts", component: Shifts },
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

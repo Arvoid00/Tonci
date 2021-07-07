@@ -6,11 +6,12 @@
         href="#"
         style="float: right"
         class="refresh-btn"
-        @click="alertNow()"
+        @click="goBack()"
       >
         <MDBIcon icon="arrow-left" iconStyle="fas" class="me-2"></MDBIcon>Terug
       </MDBBtn>
-      <h2>Eetlijst {{ shiftname }}</h2>
+      <h2>Eetlijst</h2>
+      <!-- {{ shiftname }} -->
       <p class="desc">
         Iedere dinsdag en donderdag bereid de FoodCie een heerlijke maaltijd. Om
         20uur staat het eten klaar. Om 17uur sluiten de inschrijvingen. Het eten
@@ -22,11 +23,22 @@
       </p>
     </MDBContainer>
     <MDBContainer id="Shift" class="group">
-      <MDBRow>
-        <MDBCol md="8" sm="12">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+        <h2>Aankomende Shifts</h2>
+        <MDBBtn
+          color="primary"
+          href="#"
+          style="float: right"
+          class="refresh-btn"
+        >
+          <MDBIcon icon="sync" iconStyle="fas" class="me-2"></MDBIcon>Verversen
+        </MDBBtn>
+      </div>
+      <!-- <MDBRow>
+        <MDBCol md="10" sm="12">
           <h2>Aankomende Shifts</h2>
         </MDBCol>
-        <MDBCol md="4" sm="12">
+        <MDBCol md="2" sm="12">
           <MDBBtn
             color="primary"
             href="#"
@@ -37,7 +49,7 @@
             >Verversen
           </MDBBtn></MDBCol
         >
-      </MDBRow>
+      </MDBRow> -->
 
       <MDBRow
         :cols="['1', 'md-12']"
@@ -112,12 +124,12 @@ export default {
     MDBBtn,
   },
   props: {
-    username: String,
+    shiftname: String,
     days: Array,
   },
   methods: {
-    alertNow() {
-      alert("This does not work yet");
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     },
   },
 };
@@ -134,5 +146,11 @@ export default {
 
 .ShiftDate {
   margin-top: 56px;
+}
+
+@media screen and (max-width: 540px) {
+  .btn-wide {
+    width: 100%;
+  }
 }
 </style>

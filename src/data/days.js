@@ -1,17 +1,4 @@
-<template>
-  <div>
-    <Navbar />
-    <Shift shiftname="Demo Shift" v-bind:days="days" />
-  </div>
-</template>
-
-<script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-import Navbar from "@/components/Navbar.vue";
-import Shift from "@/components/Shift.vue";
-
-var days = [
+export default [
   {
     date: "6 juli 2021",
     registrationDeadline: "6 juli 2021 om 17:00",
@@ -59,15 +46,3 @@ var days = [
     ],
   },
 ];
-
-export default {
-  name: "Home",
-  components: {
-    Navbar,
-    Shift,
-  },
-  data() {
-    return { days: days };
-  },
-};
-</script>
