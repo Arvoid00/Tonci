@@ -108,8 +108,6 @@ import {
   MDBBtn,
 } from "mdb-vue-ui-kit";
 
-// fetch("https://skoll.nl/wp-json/myskoll/tonci").then((res) => console.log(res));
-
 export default {
   name: "AvailableShifts",
   components: {
